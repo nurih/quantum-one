@@ -11,6 +11,7 @@ var gibQ = qint.new(1, 'gibQ');
 var linQ = qint.new(1, 'linQ');
 var bexQ = qint.new(1, 'bexQ');
 
+// This is a lossy function. A read() on the qubit returns a conventional variable value of 1 or 0.
 function getRandomBit(qubit) {
     qubit.write(0);
     qubit.had();
@@ -18,7 +19,7 @@ function getRandomBit(qubit) {
 }
 
 function dump() {
-    qc.print(`[original: ${originalValue}...${receivedValue}], [received: ${receivedHad}...${originalHad}] `)
+    qc.print(`[value: ${originalValue}...${receivedValue}], [had:  ${originalHad}...${receivedHad}] `)
 }
 // Generate two random bits
 qc.label('2 random bits');
