@@ -7,9 +7,9 @@
 qc.reset(3);
 qc.discard();
 
-var gibQ = qint.new(1, 'gibQ');
-var linQ = qint.new(1, 'linQ');
-var bexQ = qint.new(1, 'bexQ');
+var gibQ = qint.new(1, 'gib Q');
+var lineQ = qint.new(1, 'line Q');
+var bexQ = qint.new(1, 'bex Q');
 
 // This is a lossy function. A read() on the qubit returns a conventional variable value of 1 or 0.
 function getRandomBit(qubit) {
@@ -38,7 +38,7 @@ if (originalHad)
 
 
 // Send the qubit!
-linQ.exchange(gibQ);
+lineQ.exchange(gibQ);
 
 // Activate the spy
 var isSpyPresent = true;
@@ -46,18 +46,18 @@ if (isSpyPresent) {
     var spy_had = 1;
     qc.label('spy');
     if (spy_had)
-        linQ.had();
-    stolen_data = linQ.read();
-    linQ.write(0);
+        lineQ.had();
+    stolen_data = lineQ.read();
+    lineQ.write(0);
     if (stolen_data)
-        linQ.not();
+        lineQ.not();
     if (spy_had)
-        linQ.had();
+        lineQ.had();
 }
 
 // Receive the qubit!
 var receivedHad = getRandomBit(bexQ);
-linQ.exchange(bexQ);
+lineQ.exchange(bexQ);
 qc.label('apply had');
 if (receivedHad)
     bexQ.had();
